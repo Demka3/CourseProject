@@ -7,6 +7,7 @@ namespace CourseProject1.DialogWindows
     /// </summary>
     public partial class EncryptWindow : Window
     {
+        internal bool isReady = false;
         public EncryptWindow()
         {
             InitializeComponent();
@@ -20,7 +21,17 @@ namespace CourseProject1.DialogWindows
                 MessageBox.Show("Вы ничего не ввели :(");
                 return;
             }
-            this.DialogResult = true;
+            this.isReady = true;
+            this.Close();
+        }
+
+        private void messageTextBox_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key==System.Windows.Input.Key.Enter)
+            {
+                messageTextBox.Text += "\n";
+                messageTextBox.CaretIndex = messageTextBox.Text.Length;
+            }
         }
     }
 }

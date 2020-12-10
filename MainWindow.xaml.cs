@@ -111,7 +111,8 @@ namespace CourseProject1
         private void encryptButton_Click(object sender, RoutedEventArgs e)
         {
             EncryptWindow encryptWindow = new EncryptWindow();
-            if (encryptWindow.ShowDialog() == true)
+            encryptWindow.ShowDialog();
+            if (encryptWindow.isReady)
             {
                 encryptDecryptLabel.Content = "Зашифровано:";
                 encryptDecryptLabel.Visibility = Visibility.Visible;
