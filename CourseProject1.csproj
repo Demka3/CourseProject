@@ -56,6 +56,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="DialogWindows\AskEncodingTypeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DialogWindows\EncryptWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -68,6 +72,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="DialogWindows\SelectEncodingType.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -75,6 +83,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DialogWindows\AskEncodingTypeWindow.xaml.cs">
+      <DependentUpon>AskEncodingTypeWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="DialogWindows\EncryptWindow.xaml.cs">
       <DependentUpon>EncryptWindow.xaml</DependentUpon>
@@ -84,6 +95,9 @@
     </Compile>
     <Compile Include="DialogWindows\EnterKeyWindow.xaml.cs">
       <DependentUpon>EnterKeyWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DialogWindows\SelectEncodingType.xaml.cs">
+      <DependentUpon>SelectEncodingType.xaml</DependentUpon>
     </Compile>
     <Compile Include="EncryptionAlgorithm.cs" />
     <Compile Include="EncodingType.cs" />

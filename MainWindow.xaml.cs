@@ -33,46 +33,62 @@ namespace CourseProject1
                 if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     var fileStream = openFileDialog.OpenFile();
-                    try
+                    AskEncodingTypeWindow askEncodingTypeWindow = new AskEncodingTypeWindow();
+                    if (askEncodingTypeWindow.ShowDialog()==true)
                     {
-                        Encoding type = EncodingType.GetEncodingType(openFileDialog.FileName);
-                        if (type == Encoding.UTF8)
+                        SelectEncodingType selectEncodingType = new SelectEncodingType();
+                        if (selectEncodingType.ShowDialog()==true)
                         {
-                            using (StreamReader reader = new StreamReader(fileStream, Encoding.UTF8))
-                            {
-                                fileContent = reader.ReadToEnd();
-                            }
-                        }
-                        else if (type == Encoding.Default)
-                        {
-                            using (StreamReader reader = new StreamReader(fileStream, Encoding.Default))
-                            {
-                                fileContent = reader.ReadToEnd();
-                            }
-                        }
-                        else if (type == Encoding.Unicode)
-                        {
-                            using (StreamReader reader = new StreamReader(fileStream, Encoding.Unicode))
-                            {
-                                fileContent = reader.ReadToEnd();
-                            }
-                        }
-                        else if (type == Encoding.BigEndianUnicode)
-                        {
-                            using (StreamReader reader = new StreamReader(fileStream, Encoding.BigEndianUnicode))
-                            {
-                                fileContent = reader.ReadToEnd();
-                            }
+                            fileContent = GetStringFromFile(fileStream, selectEncodingType.encodingTypesComboBox.Text);
                         }
                         else
                         {
-                            MessageBox.Show("Неизвестная кодировка файла :(");
+                            return;
                         }
                     }
-                    catch (Exception)
+                    else
                     {
-                        MessageBox.Show("Неизвестная кодировка файла :(");
-                    }
+                        try
+                        {
+                            Encoding type = EncodingType.GetEncodingType(openFileDialog.FileName);
+                            if (type == Encoding.UTF8)
+                            {
+                                using (StreamReader reader = new StreamReader(fileStream, Encoding.UTF8))
+                                {
+                                    fileContent = reader.ReadToEnd();
+                                }
+                            }
+                            else if (type == Encoding.Default)
+                            {
+                                using (StreamReader reader = new StreamReader(fileStream, Encoding.Default))
+                                {
+                                    fileContent = reader.ReadToEnd();
+                                }
+                            }
+                            else if (type == Encoding.Unicode)
+                            {
+                                using (StreamReader reader = new StreamReader(fileStream, Encoding.Unicode))
+                                {
+                                    fileContent = reader.ReadToEnd();
+                                }
+                            }
+                            else if (type == Encoding.BigEndianUnicode)
+                            {
+                                using (StreamReader reader = new StreamReader(fileStream, Encoding.BigEndianUnicode))
+                                {
+                                    fileContent = reader.ReadToEnd();
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Не удалось определить кодировку файла :(");
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            MessageBox.Show("Не удалось определить кодировку файла :(");
+                        }
+                    }      
                 }
             }
             encryptDecryptLabel.Content = "Расшифровано:";
@@ -158,6 +174,48 @@ namespace CourseProject1
                 }
             }
             MessageBox.Show("Сохранено!");
+        }
+        private static string GetStringFromFile(Stream fileStream, string encodingType)
+        {
+            switch (encodingType)
+            {
+                case "ANSI":
+                    using (StreamReader reader = new StreamReader(fileStream, Encoding.GetEncoding(1251)))
+                    {
+                        return reader.ReadToEnd();
+                    }
+                case "UTF8":
+                    using (StreamReader reader = new StreamReader(fileStream, Encoding.UTF8))
+                    {
+                        return reader.ReadToEnd();
+                    }
+                case "UTF7":
+                    using (StreamReader reader = new StreamReader(fileStream, Encoding.UTF7))
+                    {
+                        return reader.ReadToEnd();
+                    }
+                case "UTF32":
+                    using (StreamReader reader = new StreamReader(fileStream, Encoding.UTF32))
+                    {
+                        return reader.ReadToEnd();
+                    }
+                case "ASCII":
+                    using (StreamReader reader = new StreamReader(fileStream, Encoding.ASCII))
+                    {
+                        return reader.ReadToEnd();
+                    }
+                case "Unicode":
+                    using (StreamReader reader = new StreamReader(fileStream, Encoding.Unicode))
+                    {
+                        return reader.ReadToEnd();
+                    }
+                case "Big Endian Unicode":
+                    using (StreamReader reader = new StreamReader(fileStream, Encoding.BigEndianUnicode))
+                    {
+                        return reader.ReadToEnd();
+                    }
+            }
+            return "Абра Кадабра!";
         }
     }
 }
