@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         Title="Зашифровать" WindowStyle="ToolWindow" Width="470" Height="320" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" >
     <Grid>
-        <Button Content="Готово" HorizontalAlignment="Right" Margin="0,0,78,10" VerticalAlignment="Bottom" Width="60" Name="okButton" Click="okButton_Click" IsDefault="True"/>
-        <TextBox HorizontalAlignment="Left" Margin="10,41,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Name="messageTextBox" Width="433" Height="200" KeyDown="messageTextBox_KeyDown"/>
+        <Button Content="Готово" HorizontalAlignment="Right" Margin="0,0,78,10" VerticalAlignment="Bottom" Width="60" Name="readyButton" Click="readyButton_Click"/>
+        <TextBox HorizontalAlignment="Left" Margin="10,41,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Name="messageTextBox" Width="433" Height="200" AcceptsReturn="True"/>
         <Label Content="" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="433" Name="label"/>
         <Button Content="Отмена" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" IsCancel="True" Width="63"/>
     </Grid>
