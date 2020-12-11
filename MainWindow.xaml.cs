@@ -168,7 +168,7 @@ namespace CourseProject1
             }
             using (FileStream fs = File.Create(folderBrowser.SelectedPath + "\\" + fileName + ".txt"))
             {
-                using (StreamWriter sw = new StreamWriter(fs, Encoding.Default))
+                using (StreamWriter sw = new StreamWriter(fs, Encoding.UTF8))
                 {
                     sw.Write(decryptedTextBlock.Text);
                 }
